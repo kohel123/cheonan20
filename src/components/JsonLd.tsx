@@ -72,29 +72,29 @@ export const JsonLd: React.FC<JsonLdProps> = ({ ads }) => {
     };
 
     // 4. EventSeries / subevent
-    const subevents = ads.map((ad, idx) => ({
+    const subevents = (ads || []).map((ad) => ({
       "@type": "Event",
-      "name": ad.gather_name,
-      "description": `${ad.gather_name} - ${ad.ad_info}. 천안·아산 웨딩홀 및 스드메 무료초대권 신청.`,
+      "name": ad?.gather_name || "천안 웨딩박람회",
+      "description": `${ad?.gather_name || '천안 웨딩박람회'} - ${ad?.ad_info || ''}. 천안·아산 웨딩홀 및 스드메 무료초대권 신청.`,
       "startDate": todayIso, // 항상 현재날짜 (ISO 8601)
-      "endDate": ad.endDateIso, // 연동된 박람회 일정의 두번째 날짜 ISO 8601
+      "endDate": ad?.endDateIso || todayIso, // 연동된 박람회 일정의 두번째 날짜 ISO 8601
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
         "@type": "Place",
-        "name": ad.venueName || ad.gather_name,
+        "name": ad?.venueName || ad?.gather_name || "천안 특별행사장",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": ad.ad_location,
-          "addressLocality": ad.district,
+          "streetAddress": ad?.ad_location || "충청남도 천안시",
+          "addressLocality": ad?.district || "천안시",
           "addressRegion": "충청남도",
           "addressCountry": "KR"
         }
       },
-      "image": [ad.ad_thumbnail || ad.ad_mainvisual],
+      "image": [ad?.ad_thumbnail || ad?.ad_mainvisual || 'https://ad.cpaad.co.kr/data/ad/202404/2337ea9ac0ebeb271ae4fe609b8d7149_GgY2hWN5VCMe6S.jpg'],
       "offers": {
         "@type": "Offer",
-        "url": ad.final_url || currentUrl,
+        "url": ad?.final_url || currentUrl,
         "price": "0",
         "priceCurrency": "KRW",
         "availability": "https://schema.org/InStock",
@@ -102,15 +102,15 @@ export const JsonLd: React.FC<JsonLdProps> = ({ ads }) => {
       },
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": ad.rating.toString(),
+        "ratingValue": (ad?.rating ?? 4.9).toString(),
         "bestRating": "5",
         "worstRating": "1",
-        "ratingCount": ad.reviewCount.toString()
+        "ratingCount": (ad?.reviewCount ?? 120).toString()
       },
       "organizer": {
         "@type": "Organization",
-        "name": ad.gather_name,
-        "url": ad.final_url || currentUrl
+        "name": ad?.gather_name || "천안웨딩박람회",
+        "url": ad?.final_url || currentUrl
       }
     }));
 

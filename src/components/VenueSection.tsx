@@ -97,7 +97,7 @@ export const VenueSection: React.FC<VenueSectionProps> = ({ ads, onSelectExpo })
                     <span className="font-semibold truncate">{expo.gather_name}</span>
                   </div>
                   <span className="text-[10px] text-amber-300 group-hover/btn:text-slate-900 shrink-0 ml-2">
-                    {expo.ad_date.split('~')[0]}
+                    {(expo.ad_date || '').split('~')[0] || ''}
                   </span>
                 </button>
               ))}
