@@ -13,8 +13,8 @@ export const JsonLd: React.FC<JsonLdProps> = ({ ads }) => {
     const pad = (n: number) => n.toString().padStart(2, '0');
     const todayIso = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T00:00:00+09:00`;
 
-    const origin = window.location.origin || 'https://cheonanwedding.kr';
-    const currentUrl = window.location.href || `${origin}/`;
+    const origin = (typeof window !== 'undefined' && window.location.origin) ? window.location.origin : 'https://kohel123.github.io';
+    const currentUrl = (typeof window !== 'undefined' && window.location.href) ? window.location.href : 'https://kohel123.github.io/cheonan20/';
 
     // 1. WebSite & SearchAction
     const websiteSchema = {
