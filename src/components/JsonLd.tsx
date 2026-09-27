@@ -148,13 +148,16 @@ export const JsonLd: React.FC<JsonLdProps> = ({ ads }) => {
       }))
     };
 
-    const combinedSchemas = [
-      websiteSchema,
-      webPageSchema,
-      breadcrumbSchema,
-      eventSeriesSchema,
-      faqSchema
-    ];
+    const combinedSchemas = {
+      "@context": "https://schema.org",
+      "@graph": [
+        websiteSchema,
+        webPageSchema,
+        breadcrumbSchema,
+        eventSeriesSchema,
+        faqSchema
+      ]
+    };
 
     // Inject into document head
     let scriptTag = document.getElementById('jsonld-structured-data') as HTMLScriptElement;
@@ -164,7 +167,7 @@ export const JsonLd: React.FC<JsonLdProps> = ({ ads }) => {
       scriptTag.type = 'application/ld+json';
       document.head.appendChild(scriptTag);
     }
-    scriptTag.text = JSON.stringify(combinedSchemas);
+    scriptTag.text = JSON.stringify(combinedSchemas, null, 2);
 
     return () => {
       // cleanup if needed
