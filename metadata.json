@@ -1,0 +1,8 @@
+{
+  "name": "천안웨딩박람회일정",
+  "description": "천안·아산 웨딩박람회 최신 일정 및 무료초대권 사전신청 안내. 천안 갤러리아, 신세계, 오브제, 모나밸리 등 주요 웨딩홀 및 스드메, 허니문, 혼수 혜택 비교.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
