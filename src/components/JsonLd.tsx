@@ -13,12 +13,18 @@ export const JsonLd: React.FC<JsonLdProps> = ({ ads }) => {
     const pad = (n: number) => n.toString().padStart(2, '0');
     const todayIso = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T00:00:00+09:00`;
 
+    // Dynamic origin and current base URL calculation based on accessed domain
     const origin = (typeof window !== 'undefined' && window.location.origin) 
       ? window.location.origin 
       : 'https://kohel123.github.io';
-    const currentUrl = (typeof window !== 'undefined' && window.location.origin) 
-      ? `${window.location.origin}${window.location.pathname}` 
-      : 'https://kohel123.github.io/cheonan20/';
+    
+    let path = (typeof window !== 'undefined' && window.location.pathname) 
+      ? window.location.pathname.replace(/\/index\.html$/i, '') 
+      : '/cheonan20/';
+    if (!path.endsWith('/')) {
+      path += '/';
+    }
+    const currentUrl = `${origin}${path}`;
 
     // Dynamically update Canonical & OG URL tags to matching custom domain
     if (typeof document !== 'undefined') {

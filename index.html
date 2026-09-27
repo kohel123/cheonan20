@@ -31,18 +31,25 @@
     <meta property="og:url" id="og-url" content="https://kohel123.github.io/cheonan20/" />
     <meta property="og:updated_time" content="2026-09-27T11:27:00+09:00" />
     
-    <!-- Dynamic Domain Resolver for Canonical & OG URL -->
+    <!-- Real-time Custom Domain Synchronizer -->
     <script>
       (function() {
         try {
-          var currentUrl = window.location.origin + window.location.pathname;
-          var canonicalElem = document.getElementById('canonical-url');
-          if (canonicalElem) {
-            canonicalElem.setAttribute('href', currentUrl);
+          var loc = window.location;
+          var path = loc.pathname.replace(/\/index\.html$/i, '');
+          if (!path.endsWith('/')) {
+            path += '/';
           }
-          var ogUrlElem = document.getElementById('og-url');
-          if (ogUrlElem) {
-            ogUrlElem.setAttribute('content', currentUrl);
+          var resolvedUrl = loc.origin + path;
+          
+          var canonical = document.getElementById('canonical-url') || document.querySelector('link[rel="canonical"]');
+          if (canonical) {
+            canonical.setAttribute('href', resolvedUrl);
+          }
+          
+          var ogUrl = document.getElementById('og-url') || document.querySelector('meta[property="og:url"]');
+          if (ogUrl) {
+            ogUrl.setAttribute('content', resolvedUrl);
           }
         } catch (e) {}
       })();
