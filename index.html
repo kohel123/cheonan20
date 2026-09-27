@@ -16,7 +16,7 @@
     <title>천안웨딩박람회일정 - 천안·아산 웨딩박람회 실시간 일정 및 무료초대권</title>
     <meta name="description" content="천안웨딩박람회 최신 일정 실시간 총정리! 천안 갤러리아 센터시티, 신세계백화점, 오브제, 모나밸리 등 웨딩홀 혜택 및 스드메 특가, 무료초대권 사전신청 안내." />
     <meta name="keyword" content="천안웨딩박람회, 천안웨딩박람회일정, 아산웨딩박람회, 천안스드메, 천안웨딩홀, 웨딩박람회무료초대권, 천안결혼준비" />
-    <link rel="canonical" href="https://kohel123.github.io/cheonan20/" />
+    <link rel="canonical" id="canonical-url" href="" />
     <meta name="author" content="천안웨딩박람회일정" />
     
     <!-- Open Graph -->
@@ -28,8 +28,25 @@
     <meta property="og:description" content="천안·아산 지역 실시간 웨딩박람회 일정 안내 및 무료초대권 사전예약, 웨딩홀 및 스드메 파격 혜택!" />
     <meta property="og:keywords" content="천안웨딩박람회, 천안웨딩박람회일정, 아산웨딩박람회, 천안스드메, 천안웨딩홀" />
     <meta property="og:image" content="https://ad.cpaad.co.kr/data/ad/202404/2337ea9ac0ebeb271ae4fe609b8d7149_GgY2hWN5VCMe6S.jpg" />
-    <meta property="og:url" content="https://kohel123.github.io/cheonan20/" />
+    <meta property="og:url" id="og-url" content="" />
     <meta property="og:updated_time" content="2026-09-27T11:27:00+09:00" />
+    
+    <!-- Dynamic Domain Resolver for Canonical & OG URL -->
+    <script>
+      (function() {
+        try {
+          var currentUrl = window.location.origin + window.location.pathname;
+          var canonicalElem = document.getElementById('canonical-url');
+          if (canonicalElem) {
+            canonicalElem.setAttribute('href', currentUrl);
+          }
+          var ogUrlElem = document.getElementById('og-url');
+          if (ogUrlElem) {
+            ogUrlElem.setAttribute('content', currentUrl);
+          }
+        } catch (e) {}
+      })();
+    </script>
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />

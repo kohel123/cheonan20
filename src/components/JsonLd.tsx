@@ -13,8 +13,24 @@ export const JsonLd: React.FC<JsonLdProps> = ({ ads }) => {
     const pad = (n: number) => n.toString().padStart(2, '0');
     const todayIso = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T00:00:00+09:00`;
 
-    const origin = (typeof window !== 'undefined' && window.location.origin) ? window.location.origin : 'https://kohel123.github.io';
-    const currentUrl = (typeof window !== 'undefined' && window.location.href) ? window.location.href : 'https://kohel123.github.io/cheonan20/';
+    const origin = (typeof window !== 'undefined' && window.location.origin) 
+      ? window.location.origin 
+      : 'https://kohel123.github.io';
+    const currentUrl = (typeof window !== 'undefined' && window.location.origin) 
+      ? `${window.location.origin}${window.location.pathname}` 
+      : 'https://kohel123.github.io/cheonan20/';
+
+    // Dynamically update Canonical & OG URL tags to matching custom domain
+    if (typeof document !== 'undefined') {
+      const canonicalElem = document.getElementById('canonical-url') || document.querySelector('link[rel="canonical"]');
+      if (canonicalElem) {
+        canonicalElem.setAttribute('href', currentUrl);
+      }
+      const ogUrlElem = document.getElementById('og-url') || document.querySelector('meta[property="og:url"]');
+      if (ogUrlElem) {
+        ogUrlElem.setAttribute('content', currentUrl);
+      }
+    }
 
     // 1. WebSite & SearchAction
     const websiteSchema = {
