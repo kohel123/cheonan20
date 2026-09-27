@@ -228,9 +228,12 @@ async function fetchApiData(proxyUrl: string, directUrl: string, fallbackList: R
     // 1st Attempt: Local Proxy endpoint (server-side cURL style proxy)
     const res = await fetch(proxyUrl, { headers: { 'Accept': 'application/json' } });
     if (res.ok) {
-      const data = await res.json();
-      const ads = extractAds(data);
-      if (ads.length > 0) return ads;
+      const contentType = res.headers.get('content-type') || '';
+      if (contentType.includes('application/json') || contentType.includes('text/plain') || contentType.includes('json')) {
+        const data = await res.json();
+        const ads = extractAds(data);
+        if (ads.length > 0) return ads;
+      }
     }
   } catch (e) {
     // ignore and try direct
